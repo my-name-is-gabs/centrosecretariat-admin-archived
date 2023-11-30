@@ -35,7 +35,7 @@ const Sidenav = ({ toggleNav }) => {
       >
         <MenuItem
           icon={<DashboardOutlinedIcon />}
-          component={<Link to="#dash" />}
+          component={<Link to="/head-officer/" />}
         >
           {' '}
           Dashboard{' '}
@@ -43,22 +43,48 @@ const Sidenav = ({ toggleNav }) => {
 
         <MenuItem
           icon={<PeopleAltOutlinedIcon />}
-          component={<Link to="#user" />}
+          component={<Link to="/head-officer/users/" />}
         >
           {' '}
           Users{' '}
         </MenuItem>
         <SubMenu icon={<TableViewOutlinedIcon />} label="Application">
-          <MenuItem> Applicant Table </MenuItem>
-          <MenuItem> Audit Table </MenuItem>
+          <MenuItem component={<Link to="/head-officer/applicant-table/" />}>
+            {' '}
+            Applicant Table{' '}
+          </MenuItem>
+          <MenuItem component={<Link to="/head-officer/audit-table/" />}>
+            {' '}
+            Audit Table{' '}
+          </MenuItem>
         </SubMenu>
-        <MenuItem icon={<SettingsOutlinedIcon />}>Config Scholar</MenuItem>
+        <MenuItem
+          icon={<SettingsOutlinedIcon />}
+          component={<Link to="/head-officer/config/" />}
+        >
+          Config Scholar
+        </MenuItem>
         <SubMenu icon={<InsertChartOutlinedIcon />} label="Charts">
-          <MenuItem> Line Chart </MenuItem>
-          <MenuItem> Area Bump </MenuItem>
-          <MenuItem> Doughnut Chart </MenuItem>
-          <MenuItem> Pie Chart </MenuItem>
-          <MenuItem> Heatmap </MenuItem>
+          <MenuItem component={<Link to="/head-officer/line-chart/" />}>
+            {' '}
+            Line Chart{' '}
+          </MenuItem>
+          <MenuItem component={<Link to="/head-officer/area-bump/" />}>
+            {' '}
+            Area Bump{' '}
+          </MenuItem>
+          <MenuItem component={<Link to="/head-officer/doughnut-chart/" />}>
+            {' '}
+            Doughnut Chart{' '}
+          </MenuItem>
+          <MenuItem component={<Link to="/head-officer/pie-chart/" />}>
+            {' '}
+            Pie Chart{' '}
+          </MenuItem>
+          <MenuItem component={<Link to="/head-officer/heatmap/" />}>
+            {' '}
+            Heatmap{' '}
+          </MenuItem>
         </SubMenu>
       </Menu>
     </Sidebar>

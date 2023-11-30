@@ -7,11 +7,13 @@ import MenuIcon from '@mui/icons-material/Menu';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
+import AuthContext from '../../auth/AuthContext';
 
 // eslint-disable-next-line react/prop-types
 const AppHeader = ({ setToggleNav, toggleNav }) => {
   const [anchorEl, setAnchorEl] = useState(null);
+  const { logoutUser } = useContext(AuthContext);
 
   const handleMenu = event => setAnchorEl(event.currentTarget);
   const handleClose = () => setAnchorEl(null);
@@ -56,9 +58,7 @@ const AppHeader = ({ setToggleNav, toggleNav }) => {
             onClose={handleClose}
           >
             <MenuItem onClick={handleClose}>Profile</MenuItem>
-            <MenuItem onClick={handleClose}>
-              <Typography>My account</Typography>
-            </MenuItem>
+            <MenuItem onClick={logoutUser}>Logout</MenuItem>
           </Menu>
         </Box>
       </Toolbar>
