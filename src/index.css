@@ -61,3 +61,57 @@ html {
 .landing--logo-container .landing--text-container p {
   font-size: 1.25rem;
 }
+
+/* LOADING PAGE DESIGN */
+.loading--container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100vw !important ;
+  height: 100vh !important;
+  position: fixed;
+  top: 0%;
+  left: 0%;
+  width: fit-content;
+  height: fit-content;
+  z-index: 9999 !important;
+  background-color: white;
+}
+
+.loading--card {
+  width: 30rem;
+  padding: 1rem;
+  text-align: center;
+  border-radius: 0.8rem;
+  background-color: white;
+  z-index: 1000;
+}
+
+.loading--card__skeleton {
+  background-image: linear-gradient(
+    90deg,
+    #ccc 0px,
+    rgb(229 229 229 / 90%) 40px,
+    #ccc 80px
+  );
+  background-size: 300%;
+  background-position: 100% 0;
+  border-radius: inherit;
+  animation: shimmer 1.5s infinite;
+}
+
+.loading--card__title {
+  height: 50px;
+  margin-bottom: 15px;
+}
+
+.loading--card__description {
+  height: 35vh;
+}
+
+@keyframes shimmer {
+  to {
+    background-position: -100% 0;
+  }
+}

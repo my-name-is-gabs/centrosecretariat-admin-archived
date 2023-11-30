@@ -1,17 +1,17 @@
 import { useState, useContext } from 'react';
-// import AuthContext from '../context/AuthContext';
-// import LoadingPage from '../LoadingPage';
+import AuthContext from '../../auth/AuthContext';
+import LoadingPage from '../../LoadingPage';
 import { NavLink } from 'react-router-dom';
 
 import './login.css';
 
 const HeadLogin = () => {
-  // const { handleAdminLogin, error, isLoading } = useContext(AuthContext);
+  const { handleHeadLogin, isLoading } = useContext(AuthContext);
   const [showPass, setShowPass] = useState(false);
 
   return (
     <>
-      {/* {isLoading && <LoadingPage />} */}
+      {isLoading && <LoadingPage />}
       <div className="login-page_container">
         <aside className="login-page_sidebar">
           <div className="login-page_header">
@@ -34,7 +34,7 @@ const HeadLogin = () => {
 
           <form
             className="login-page_form_container shadow"
-            // onSubmit={handleAdminLogin}
+            onSubmit={handleHeadLogin}
             method="post"
           >
             <h1 className="fw-bold fs-2 mt-5 text-center">
@@ -48,7 +48,7 @@ const HeadLogin = () => {
                 type="text"
                 className="form-control rounded login-border-primary"
                 id="username"
-                name="admin_username"
+                name="head_username"
                 autoComplete="off"
                 required
               />
@@ -61,7 +61,7 @@ const HeadLogin = () => {
                 type={showPass ? 'text' : 'password'}
                 className="form-control rounded login-border-primary"
                 id="password"
-                name="admin_password"
+                name="head_password"
                 required
               />
             </div>
@@ -83,10 +83,7 @@ const HeadLogin = () => {
             </div>
 
             <div className="d-flex justify-content-center gap-3">
-              <button
-                type="button"
-                className="btn cs-btn-primary fw-bold fs-5 shadow-sm px-5"
-              >
+              <button className="btn cs-btn-primary fw-bold fs-5 shadow-sm px-5">
                 Login
               </button>
             </div>

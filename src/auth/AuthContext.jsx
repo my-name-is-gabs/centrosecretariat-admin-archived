@@ -44,7 +44,7 @@ export const AuthProvider = ({ children }) => {
         'JWT ' + localStorage.getItem('access_token');
 
       setLoading(false);
-      return navigate('/head');
+      return navigate('/scholar-officer/');
     } catch (err) {
       setLoading(false);
       console.error(err);
@@ -79,7 +79,7 @@ export const AuthProvider = ({ children }) => {
         'JWT ' + localStorage.getItem('access_token');
 
       setLoading(false);
-      return navigate('/head');
+      return navigate('/head-officer/');
     } catch (err) {
       setLoading(false);
       console.error(err);
