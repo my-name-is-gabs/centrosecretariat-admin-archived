@@ -15,7 +15,7 @@ const Sidenav = ({ toggleNav }) => {
   return (
     <Sidebar
       style={{
-        height: '100vh',
+        minHeight: '100vh',
         top: 'auto',
       }}
       breakPoint="md"
