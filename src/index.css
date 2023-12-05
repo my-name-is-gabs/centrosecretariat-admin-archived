@@ -26,6 +26,13 @@ html,
   height: 100%;
 }
 
+input[type='date']:required:invalid::-webkit-datetime-edit {
+  color: transparent;
+}
+input[type='date']:focus::-webkit-datetime-edit {
+  color: black !important;
+}
+
 .cs-btn-primary {
   background: #f1c732 !important;
   border: #223d7e 3px solid !important;

@@ -7,7 +7,7 @@ import PageNotFound from './PageNotFound';
 import HeadPrivateRoute from './context/HeadPrivateRoute';
 import HeadBase from './Head/base/HeadBase';
 import HeadDashboard from './Head/pages/HeadDashboard';
-import ManageUsers from './Head/pages/ManageUsers';
+import ManageScholarOfficer from './Head/pages/accounts/ManageScholarOfficer';
 import ApplicantTable from './Head/pages/tables/ApplicantTable';
 import AuditTable from './Head/pages/tables/AuditTable';
 import ConfigScholar from './Head/pages/ConfigScholar';
@@ -16,6 +16,7 @@ import AreaBumpChart from './Head/pages/charts/AreaBumpChart';
 import DoughnutChart from './Head/pages/charts/DoughnutChart';
 import PieChart from './Head/pages/charts/PieChart';
 import HeadHeatmap from './Head/pages/charts/HeadHeatmap';
+import ScholarAccountList from './Head/pages/accounts/ScholarAccountList';
 
 function App() {
   return (
@@ -37,7 +38,14 @@ function App() {
         <Route element={<HeadPrivateRoute />}>
           <Route path="/head-officer/" element={<HeadBase />}>
             <Route path="/head-officer/" element={<HeadDashboard />} />
-            <Route path="/head-officer/users/" element={<ManageUsers />} />
+            <Route
+              path="/head-officer/scholar-officer-accounts/"
+              element={<ManageScholarOfficer />}
+            />
+            <Route
+              path="/head-officer/scholar-account-list/"
+              element={<ScholarAccountList />}
+            />
             <Route
               path="/head-officer/applicant-table/"
               element={<ApplicantTable />}
@@ -45,7 +53,7 @@ function App() {
             <Route path="/head-officer/audit-table/" element={<AuditTable />} />
             <Route path="/head-officer/config/" element={<ConfigScholar />} />
             <Route
-              path="/head-officer/line-chart/"
+              path="/head-officer/forecast-result/"
               element={<ForecastingChart />}
             />
             <Route
