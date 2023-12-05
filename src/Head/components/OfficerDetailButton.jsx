@@ -4,15 +4,15 @@ import { useContext } from 'react';
 import ListDetailContext from '../context/ListDetailContext.jsx';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 
-const ViewUserDetailButton = ({ params, rows }) => {
-  const { setUsernameID, setOpenDialog } = useContext(ListDetailContext);
+const ViewOfficerDetailButton = ({ params, rows }) => {
+  const { setOfficerUname, setOpenDialog } = useContext(ListDetailContext);
   return (
     <>
       <Button
         variant="contained"
         size="small"
         onClick={() => {
-          setUsernameID(rows.find(item => params.id === item.id).username);
+          setOfficerUname(rows.find(item => params.id === item.id).username);
           setOpenDialog(true);
         }}
       >
@@ -22,4 +22,4 @@ const ViewUserDetailButton = ({ params, rows }) => {
   );
 };
 
-export default ViewUserDetailButton;
+export default ViewOfficerDetailButton;

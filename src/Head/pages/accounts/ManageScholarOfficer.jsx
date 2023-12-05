@@ -17,7 +17,7 @@ import { useFormik } from 'formik';
 import * as yup from 'yup';
 import { useEffect } from 'react';
 import { useState } from 'react';
-import ViewUserDetailButton from '../../components/UserDetailButton';
+import ViewOfficerDetailButton from '../../components/OfficerDetailButton';
 import { useMemo } from 'react';
 import OfficerDetail from '../../dialogs/OfficerDetail';
 import moment from 'moment';
@@ -71,7 +71,7 @@ const ManageScholarOfficer = () => {
         headerName: 'Action',
         type: 'actions',
         renderCell: params => (
-          <ViewUserDetailButton params={params} rows={rows} />
+          <ViewOfficerDetailButton params={params} rows={rows} />
         ),
       },
     ],
