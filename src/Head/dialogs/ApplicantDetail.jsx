@@ -699,7 +699,7 @@ const ApplicantDetail = () => {
         <Button
           onClick={() => setOpenDialog(false)}
           variant="contained"
-          color="secondary"
+          color="danger"
         >
           Close
         </Button>

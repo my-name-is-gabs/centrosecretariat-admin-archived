@@ -1,5 +1,11 @@
 import { createTheme } from '@mui/material';
-import { indigo, deepOrange, blueGrey } from '@mui/material/colors';
+import {
+  indigo,
+  deepOrange,
+  blueGrey,
+  red,
+  yellow,
+} from '@mui/material/colors';
 
 let theme = createTheme({
   palette: {
@@ -20,6 +26,16 @@ let theme = createTheme({
       normal: blueGrey['A700'],
       main: blueGrey[500],
       dark: blueGrey[900],
+    },
+    danger: {
+      light: red[200],
+      main: red[500],
+      dark: red[900],
+    },
+    warning: {
+      light: yellow[200],
+      main: yellow[500],
+      dark: yellow[900],
     },
   },
 });
