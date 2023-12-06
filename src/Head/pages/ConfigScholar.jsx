@@ -232,7 +232,7 @@ const EditConfigModal = ({ openDialog, setOpenDialog }) => {
               Close
             </Button>
             <Button type="submit" variant="contained" color="primary">
-              Update
+              Save
             </Button>
           </DialogActions>
         </form>
