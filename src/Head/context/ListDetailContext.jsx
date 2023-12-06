@@ -15,7 +15,7 @@ export const ListDetailProvider = ({ children }) => {
   useEffect(() => {
     connectAPI
       .get(`/accounts/users/staff/${officerUname}`)
-      .then(res => setOfficerProfile(res.data))
+      .then(res => setOfficerProfile(res.data.profile))
       .catch(err =>
         console.error(
           `there is an error in fetching officer detail: ${err.message}`
@@ -26,7 +26,7 @@ export const ListDetailProvider = ({ children }) => {
   useEffect(() => {
     connectAPI
       .get(`/accounts/users/scholars/${scholarUname}`)
-      .then(res => setScholarProfile(res.data))
+      .then(res => setScholarProfile(res.data.profile))
       .catch(err =>
         console.error(
           `there is an error in fetching scholar detail: ${err.message}`
@@ -43,6 +43,8 @@ export const ListDetailProvider = ({ children }) => {
         fetchOfficerProfile,
         setScholarUname,
         fetchScholarProfile,
+        scholarUname,
+        officerUname,
       }}
     >
       {children}

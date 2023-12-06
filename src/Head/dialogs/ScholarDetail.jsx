@@ -9,9 +9,10 @@ import {
 } from '@mui/material';
 import { useContext } from 'react';
 import ListDetailContext from '../context/ListDetailContext.jsx';
+import moment from 'moment';
 
 const ScholarDetail = () => {
-  const { openDialog, setOpenDialog, fetchScholarProfile } =
+  const { openDialog, setOpenDialog, fetchScholarProfile, scholarUname } =
     useContext(ListDetailContext);
 
   return (
@@ -25,10 +26,8 @@ const ScholarDetail = () => {
     >
       <DialogTitle id="scroll-dialog-title">
         <Typography>
-          Officer ID:{' '}
-          <span style={{ fontWeight: 'bold' }}>
-            {fetchScholarProfile?.username}
-          </span>
+          Scholar UID:{' '}
+          <span style={{ fontWeight: 'bold' }}>{scholarUname}</span>
         </Typography>
       </DialogTitle>
       <DialogContent dividers={true}>
@@ -40,35 +39,39 @@ const ScholarDetail = () => {
           <Typography>
             First name:{' '}
             <span style={{ fontWeight: 'bold' }}>
-              {fetchScholarProfile.profile?.firstname}
+              {fetchScholarProfile?.firstname}
             </span>
           </Typography>
 
           <Typography>
             Middle name:{' '}
             <span style={{ fontWeight: 'bold' }}>
-              {fetchScholarProfile.profile?.middlename}
+              {fetchScholarProfile?.middlename}
             </span>
           </Typography>
 
           <Typography>
             Last name:{' '}
             <span style={{ fontWeight: 'bold' }}>
-              {fetchScholarProfile.profile?.lastname}
+              {fetchScholarProfile?.lastname}
             </span>
           </Typography>
 
           <Typography>
             Birthdate:{' '}
             <span style={{ fontWeight: 'bold' }}>
-              {fetchScholarProfile.profile?.birthdate}
+              {moment(new Date(fetchScholarProfile?.birthdate)).format('LL')}
             </span>
           </Typography>
 
           <Typography>
             Gender:{' '}
             <span style={{ fontWeight: 'bold' }}>
-              {fetchScholarProfile.profile?.gender === 1 ? 'Male' : 'Female'}
+              {fetchScholarProfile?.gender === 1
+                ? 'Male'
+                : fetchScholarProfile?.gender === 2
+                ? 'Female'
+                : null}
             </span>
           </Typography>
 
@@ -77,21 +80,21 @@ const ScholarDetail = () => {
           <Typography>
             House Address:{' '}
             <span style={{ fontWeight: 'bold' }}>
-              {fetchScholarProfile.profile?.house_address}
+              {fetchScholarProfile?.house_address}
             </span>
           </Typography>
 
           <Typography>
             Barangay:{' '}
             <span style={{ fontWeight: 'bold' }}>
-              {fetchScholarProfile.profile?.barangay.toLowerCase()}
+              {fetchScholarProfile?.barangay.toLowerCase()}
             </span>
           </Typography>
 
           <Typography>
             District:{' '}
             <span style={{ fontWeight: 'bold' }}>
-              {fetchScholarProfile.profile?.district.toLowerCase()}
+              {fetchScholarProfile?.district.toLowerCase()}
             </span>
           </Typography>
         </DialogContentText>

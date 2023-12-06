@@ -9,9 +9,10 @@ import {
 } from '@mui/material';
 import { useContext } from 'react';
 import ListDetailContext from '../context/ListDetailContext.jsx';
+import moment from 'moment';
 
 const OfficerDetail = () => {
-  const { openDialog, setOpenDialog, fetchOfficerProfile } =
+  const { openDialog, setOpenDialog, fetchOfficerProfile, officerUname } =
     useContext(ListDetailContext);
 
   return (
@@ -25,10 +26,8 @@ const OfficerDetail = () => {
     >
       <DialogTitle id="scroll-dialog-title">
         <Typography>
-          Officer ID:{' '}
-          <span style={{ fontWeight: 'bold' }}>
-            {fetchOfficerProfile?.username}
-          </span>
+          Officer UID:{' '}
+          <span style={{ fontWeight: 'bold' }}>{officerUname}</span>
         </Typography>
       </DialogTitle>
       <DialogContent dividers={true}>
@@ -40,35 +39,39 @@ const OfficerDetail = () => {
           <Typography>
             First name:{' '}
             <span style={{ fontWeight: 'bold' }}>
-              {fetchOfficerProfile.profile?.firstname}
+              {fetchOfficerProfile?.firstname}
             </span>
           </Typography>
 
           <Typography>
             Middle name:{' '}
             <span style={{ fontWeight: 'bold' }}>
-              {fetchOfficerProfile.profile?.middlename}
+              {fetchOfficerProfile?.middlename}
             </span>
           </Typography>
 
           <Typography>
             Last name:{' '}
             <span style={{ fontWeight: 'bold' }}>
-              {fetchOfficerProfile.profile?.lastname}
+              {fetchOfficerProfile?.lastname}
             </span>
           </Typography>
 
           <Typography>
             Birthdate:{' '}
             <span style={{ fontWeight: 'bold' }}>
-              {fetchOfficerProfile.profile?.birthdate}
+              {moment(new Date(fetchOfficerProfile?.birthdate)).format('LL')}
             </span>
           </Typography>
 
           <Typography>
             Gender:{' '}
             <span style={{ fontWeight: 'bold' }}>
-              {fetchOfficerProfile.profile?.gender === 1 ? 'Male' : 'Female'}
+              {fetchOfficerProfile?.gender === 1
+                ? 'Male'
+                : fetchOfficerProfile?.gender === 2
+                ? 'Female'
+                : null}
             </span>
           </Typography>
 
@@ -77,21 +80,21 @@ const OfficerDetail = () => {
           <Typography>
             House Address:{' '}
             <span style={{ fontWeight: 'bold' }}>
-              {fetchOfficerProfile.profile?.house_address}
+              {fetchOfficerProfile?.house_address}
             </span>
           </Typography>
 
           <Typography>
             Barangay:{' '}
             <span style={{ fontWeight: 'bold' }}>
-              {fetchOfficerProfile.profile?.barangay.toLowerCase()}
+              {fetchOfficerProfile?.barangay.toLowerCase()}
             </span>
           </Typography>
 
           <Typography>
             District:{' '}
             <span style={{ fontWeight: 'bold' }}>
-              {fetchOfficerProfile.profile?.district.toLowerCase()}
+              {fetchOfficerProfile?.district.toLowerCase()}
             </span>
           </Typography>
         </DialogContentText>
