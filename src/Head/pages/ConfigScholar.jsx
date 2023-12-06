@@ -37,7 +37,7 @@ const validationSchema = yup.object({
   is_ongoing: yup.boolean(),
 });
 
-const EditConfigModal = ({ openDialog, setOpenDialog }) => {
+const EditConfigModal = ({ defaultValues, openDialog, setOpenDialog }) => {
   const formik = useFormik({
     initialValues: initialValues,
     validationSchema: validationSchema,
@@ -80,7 +80,12 @@ const EditConfigModal = ({ openDialog, setOpenDialog }) => {
               tabIndex={1}
               color="neutral"
             >
-              <Stack spacing={2}>
+              <h6 className="text-danger">
+                Note: you need to re-enter values to successfully update
+                eligibility config
+              </h6>
+
+              <Stack spacing={2} marginTop="25px">
                 <Box
                   display="inline-flex"
                   justifyContent="space-between"
@@ -92,8 +97,8 @@ const EditConfigModal = ({ openDialog, setOpenDialog }) => {
                     size="small"
                     id="semester"
                     name="semester"
-                    placeholder=""
                     onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
                     error={
                       formik.touched.semester && Boolean(formik.errors.semester)
                     }
@@ -116,7 +121,9 @@ const EditConfigModal = ({ openDialog, setOpenDialog }) => {
                     size="small"
                     type="number"
                     name="minimum_residency"
+                    placeholder={defaultValues.minimum_residency}
                     onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
                     error={
                       formik.touched.minimum_residency &&
                       Boolean(formik.errors.minimum_residency)
@@ -138,7 +145,9 @@ const EditConfigModal = ({ openDialog, setOpenDialog }) => {
                     size="small"
                     type="number"
                     name="guardians_minimum_residency"
+                    placeholder={defaultValues.guardians_minimum_residency}
                     onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
                     error={
                       formik.touched.guardians_minimum_residency &&
                       Boolean(formik.errors.guardians_minimum_residency)
@@ -161,6 +170,8 @@ const EditConfigModal = ({ openDialog, setOpenDialog }) => {
                     type="number"
                     name="voters_validity_year_start"
                     onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    placeholder={defaultValues.voters_validity_year_start}
                     error={
                       formik.touched.voters_validity_year_start &&
                       Boolean(formik.errors.voters_validity_year_start)
@@ -183,6 +194,8 @@ const EditConfigModal = ({ openDialog, setOpenDialog }) => {
                     type="number"
                     name="voters_validity_year_end"
                     onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    placeholder={defaultValues.voters_validity_year_end}
                     error={
                       formik.touched.voters_validity_year_end &&
                       Boolean(formik.errors.voters_validity_year_end)
@@ -206,6 +219,7 @@ const EditConfigModal = ({ openDialog, setOpenDialog }) => {
                     type="text"
                     name="is_ongoing"
                     onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
                     error={
                       formik.touched.is_ongoing &&
                       Boolean(formik.errors.is_ongoing)
@@ -355,7 +369,13 @@ const ConfigScholar = () => {
             <TextField
               size="small"
               name="is_ongoing"
-              value={eligibilityData?.is_ongoing}
+              value={
+                eligibilityData?.is_ongoing === true
+                  ? 'Yes'
+                  : eligibilityData?.is_ongoing === false
+                  ? 'No'
+                  : null
+              }
               InputProps={{
                 readOnly: true,
               }}
@@ -381,7 +401,11 @@ const ConfigScholar = () => {
         </Box>
       </Box>
 
-      <EditConfigModal openDialog={openDialog} setOpenDialog={setOpenDialog} />
+      <EditConfigModal
+        defaultValues={eligibilityData}
+        openDialog={openDialog}
+        setOpenDialog={setOpenDialog}
+      />
     </Box>
   );
 };
