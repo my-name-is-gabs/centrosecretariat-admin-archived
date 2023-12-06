@@ -2,6 +2,7 @@ import { createContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { jwtDecode } from 'jwt-decode';
 import connectAPI from '../connection/connectAPI';
+import { toast } from 'react-toastify';
 
 const AuthContext = createContext();
 
@@ -49,7 +50,7 @@ export const AuthProvider = ({ children }) => {
       setLoading(false);
       console.error(err);
       if (err.response.status === 401) {
-        alert('Wrong credentials!');
+        toast.error('Invalid Credentials');
         e.target.officer_username.value = '';
         e.target.officer_password.value = '';
       }
@@ -84,7 +85,7 @@ export const AuthProvider = ({ children }) => {
       setLoading(false);
       console.error(err);
       if (err.response.status === 401) {
-        alert('Wrong credentials!');
+        toast.error('Invalid Credentials');
         e.target.head_username.value = '';
         e.target.head_password.value = '';
       }
