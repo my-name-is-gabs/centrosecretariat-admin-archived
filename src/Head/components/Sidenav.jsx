@@ -2,9 +2,10 @@
 import { Sidebar, Menu, MenuItem, SubMenu } from 'react-pro-sidebar';
 import DashboardOutlinedIcon from '@mui/icons-material/DashboardOutlined';
 import PeopleAltOutlinedIcon from '@mui/icons-material/PeopleAltOutlined';
-import TableViewOutlinedIcon from '@mui/icons-material/TableViewOutlined';
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
+import TableViewIcon from '@mui/icons-material/TableView';
 import InsertChartOutlinedIcon from '@mui/icons-material/InsertChartOutlined';
+import ChecklistIcon from '@mui/icons-material/Checklist';
 import { useTheme } from '@mui/material';
 import { Link, useLocation } from 'react-router-dom';
 
@@ -69,26 +70,25 @@ const Sidenav = ({ toggleNav }) => {
           </MenuItem>
         </SubMenu>
 
-        <SubMenu
-          icon={<TableViewOutlinedIcon />}
-          label="Application"
+        <MenuItem
+          icon={<TableViewIcon />}
+          active={location.pathname === '/head-officer/applicant-table/'}
+          component={<Link to="/head-officer/applicant-table/" />}
           style={{ color: 'whitesmoke' }}
         >
-          <MenuItem
-            active={location.pathname === '/head-officer/applicant-table/'}
-            component={<Link to="/head-officer/applicant-table/" />}
-          >
-            {' '}
-            Applicant Table{' '}
-          </MenuItem>
-          <MenuItem
-            active={location.pathname === '/head-officer/audit-table/'}
-            component={<Link to="/head-officer/audit-table/" />}
-          >
-            {' '}
-            Audit Table{' '}
-          </MenuItem>
-        </SubMenu>
+          {' '}
+          Applicantion List{' '}
+        </MenuItem>
+        <MenuItem
+          icon={<ChecklistIcon />}
+          active={location.pathname === '/head-officer/audit-table/'}
+          component={<Link to="/head-officer/audit-table/" />}
+          style={{ color: 'whitesmoke' }}
+        >
+          {' '}
+          Audit Trail{' '}
+        </MenuItem>
+
         <MenuItem
           active={location.pathname === '/head-officer/config/'}
           icon={<SettingsOutlinedIcon />}
@@ -97,6 +97,7 @@ const Sidenav = ({ toggleNav }) => {
         >
           Config Scholar
         </MenuItem>
+
         <SubMenu
           icon={<InsertChartOutlinedIcon />}
           label="Charts"
