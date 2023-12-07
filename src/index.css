@@ -33,6 +33,38 @@ input[type='date']:focus::-webkit-datetime-edit {
   color: black !important;
 }
 
+.cs-bg-primary {
+  background: #223d7e !important;
+}
+
+.cs-bg-fadeblue {
+  background: #869cbf !important;
+}
+
+.cs-bg-client {
+  background: #3eb3c5 !important;
+}
+
+.cs-bg-grayish {
+  background: #a5a5a5 !important;
+}
+
+.cs-bg-light {
+  background: #dcf0fa !important;
+}
+
+.cs-bg-secondary {
+  background: #f0f0f0 !important;
+}
+
+.cs-border-top {
+  border-top: #223d7e 8px solid;
+}
+
+.cs-outline {
+  border-color: #223d7e !important;
+}
+
 .cs-btn-primary {
   background: #f1c732 !important;
   border: #223d7e 3px solid !important;
@@ -47,6 +79,33 @@ input[type='date']:focus::-webkit-datetime-edit {
 
 .cs-btn-border {
   border: #223d7e 3px solid !important;
+}
+
+.cs-border-box {
+  border: #223d7e 5px solid;
+  border-radius: 20px;
+  width: 90%;
+}
+
+.cs-radius {
+  border-radius: 20px;
+}
+
+.footer {
+  position: relative;
+  bottom: 0%;
+  right: 0%;
+  width: 100%;
+  margin: 4rem 0px;
+}
+
+.cs-btn-nolayout {
+  padding: 0%;
+  margin: 0%;
+  outline: none !important;
+  border: none !important;
+  background: transparent !important;
+  color: black;
 }
 
 .landing--logo-container {
@@ -122,4 +181,69 @@ input[type='date']:focus::-webkit-datetime-edit {
   to {
     background-position: -100% 0;
   }
+}
+
+.cs--sidebar {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.cs--sidebar .cs--sidenavs {
+  height: auto;
+  list-style-type: none;
+  padding-left: 0%;
+  display: block;
+}
+
+.cs--sidebar .cs--sidenavs li {
+  width: 100%;
+  position: relative;
+  padding: 21px 0px;
+  font-weight: 700;
+  font-size: 1.125rem;
+  color: white;
+  cursor: pointer;
+}
+
+.cs--sidebar .cs--sidenavs li:hover,
+.cs--sidebar .cs--sidenavs li.active {
+  color: #00ff94;
+}
+
+.cs--sidebar .cs--sidenavs li:hover::before,
+.cs--sidebar .cs--sidenavs li.active::before {
+  content: '';
+  width: 6px;
+  background: #00ff94;
+  height: 100%;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  border-top-right-radius: 6px;
+  border-bottom-right-radius: 6px;
+}
+
+.cs--sidebar .cs--sidenavs li div {
+  width: 50%;
+  margin: 0px auto;
+}
+
+.offcanvas {
+  width: 280px !important;
+}
+
+.cs--header {
+  position: relative;
+  top: 0%;
+  padding: 8px 0;
+  background: #eeeeec;
+}
+
+.cs--header .cs--header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 90%;
+  margin: 0% auto;
 }

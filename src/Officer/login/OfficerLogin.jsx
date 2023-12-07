@@ -26,12 +26,6 @@ const OfficerLogin = () => {
           </div>
         </aside>
         <main className="login-page_main">
-          {/* {error && (
-            <div className="alert alert-danger" role="alert">
-              {error}
-            </div>
-          )} */}
-
           <form
             className="login-page_form_container shadow"
             onSubmit={handleOfficerLogin}

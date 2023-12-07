@@ -3,7 +3,7 @@ import Landing from './start/Landing';
 import OfficerLogin from './Officer/login/OfficerLogin';
 import HeadLogin from './Head/login/HeadLogin';
 import PageNotFound from './PageNotFound';
-// import OfficerPrivateRoute from './context/OfficerPrivateRoute';
+import OfficerPrivateRoute from './context/OfficerPrivateRoute';
 import HeadPrivateRoute from './context/HeadPrivateRoute';
 import HeadBase from './Head/base/HeadBase';
 import HeadDashboard from './Head/pages/HeadDashboard';
@@ -17,6 +17,10 @@ import DoughnutChart from './Head/pages/charts/DoughnutChart';
 import PieChart from './Head/pages/charts/PieChart';
 import HeadHeatmap from './Head/pages/charts/HeadHeatmap';
 import ScholarAccountList from './Head/pages/accounts/ScholarAccountList';
+import OfficerBase from './Officer/base/OfficerBase';
+import Home from './Officer/Home/Home';
+import SettingsPage from './Officer/Pages/SettingPage';
+import ForgotPassword from './ForgotPassword';
 
 function App() {
   return (
@@ -28,9 +32,15 @@ function App() {
         {/* Scholar officer routing */}
         <Route path="/scholar-officer/login" element={<OfficerLogin />} />
         {/* Scholar officer private route */}
-        {/* <Route element={<OfficerPrivateRoute />}>
-          <Route path="/scholar-officer/" element={<Test />} />
-        </Route> */}
+        <Route element={<OfficerPrivateRoute />}>
+          <Route path="/scholar-officer/" element={<OfficerBase />}>
+            <Route path="/scholar-officer/" element={<Home />} />
+            <Route
+              path="/scholar-officer/profile/"
+              element={<SettingsPage />}
+            />
+          </Route>
+        </Route>
 
         {/* Head scholarship officer routing */}
         <Route path="/head-officer/login" element={<HeadLogin />} />
@@ -68,6 +78,8 @@ function App() {
             <Route path="/head-officer/heatmap/" element={<HeadHeatmap />} />
           </Route>
         </Route>
+
+        <Route path="/forgot-password" element={<ForgotPassword />} />
 
         {/* For testing pruposes */}
         {/* <Route path="/test" element={<HeadBase />} /> */}
