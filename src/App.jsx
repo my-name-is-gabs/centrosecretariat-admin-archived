@@ -1,27 +1,27 @@
 import { Routes, Route } from 'react-router-dom';
 import Landing from './start/Landing';
-import OfficerLogin from './Officer/login/OfficerLogin';
-import HeadLogin from './Head/login/HeadLogin';
+import OfficerLogin from './officer/login/OfficerLogin';
+import HeadLogin from './head/login/HeadLogin';
 import PageNotFound from './PageNotFound';
 import OfficerPrivateRoute from './context/OfficerPrivateRoute';
 import HeadPrivateRoute from './context/HeadPrivateRoute';
-import HeadBase from './Head/base/HeadBase';
-import HeadDashboard from './Head/pages/HeadDashboard';
-import ManageScholarOfficer from './Head/pages/accounts/ManageScholarOfficer';
-import ApplicantTable from './Head/pages/tables/ApplicantTable';
-import AuditTable from './Head/pages/tables/AuditTable';
-import ConfigScholar from './Head/pages/ConfigScholar';
-import ForecastingChart from './Head/pages/charts/ForecastingChart';
-import AreaBumpChart from './Head/pages/charts/AreaBumpChart';
-import DoughnutChart from './Head/pages/charts/DoughnutChart';
-import PieChart from './Head/pages/charts/PieChart';
-import HeadHeatmap from './Head/pages/charts/HeadHeatmap';
-import ScholarAccountList from './Head/pages/accounts/ScholarAccountList';
-import OfficerBase from './Officer/base/OfficerBase';
-import Home from './Officer/Home/Home';
-import SettingsPage from './Officer/Pages/SettingPage';
+import HeadBase from './head/base/HeadBase';
+import HeadDashboard from './head/pages/HeadDashboard';
+import ManageScholarOfficer from './head/pages/accounts/ManageScholarOfficer';
+import ApplicantTable from './head/pages/tables/ApplicantTable';
+import AuditTable from './head/pages/tables/AuditTable';
+import ConfigScholar from './head/pages/ConfigScholar';
+import ForecastingChart from './head/pages/charts/ForecastingChart';
+import AreaBumpChart from './head/pages/charts/AreaBumpChart';
+import DoughnutChart from './head/pages/charts/DoughnutChart';
+import PieChart from './head/pages/charts/PieChart';
+import HeadHeatmap from './head/pages/charts/HeadHeatmap';
+import ScholarAccountList from './head/pages/accounts/ScholarAccountList';
+import OfficerBase from './officer/base/OfficerBase';
+import Home from './officer/Home/Home';
+import SettingsPage from './officer/Pages/SettingPage';
 import ForgotPassword from './ForgotPassword';
-import Profile from './Head/pages/Profile';
+import Profile from './head/pages/Profile';
 
 function App() {
   return (
