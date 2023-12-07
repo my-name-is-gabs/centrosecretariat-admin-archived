@@ -52,7 +52,12 @@ const AppHeader = () => {
             open={Boolean(anchorEl)}
             onClose={handleClose}
           >
-            <MenuItem onClick={() => navigate('/scholar-officer/profile/')}>
+            <MenuItem
+              onClick={() => {
+                navigate('/scholar-officer/profile/');
+                handleClose();
+              }}
+            >
               Profile
             </MenuItem>
             <MenuItem onClick={logoutUser}>Logout</MenuItem>

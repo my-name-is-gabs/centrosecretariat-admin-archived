@@ -21,6 +21,7 @@ import OfficerBase from './Officer/base/OfficerBase';
 import Home from './Officer/Home/Home';
 import SettingsPage from './Officer/Pages/SettingPage';
 import ForgotPassword from './ForgotPassword';
+import Profile from './Head/pages/Profile';
 
 function App() {
   return (
@@ -76,6 +77,7 @@ function App() {
             />
             <Route path="/head-officer/pie-chart/" element={<PieChart />} />
             <Route path="/head-officer/heatmap/" element={<HeadHeatmap />} />
+            <Route path="/head-officer/profile/" element={<Profile />} />
           </Route>
         </Route>
 

@@ -9,6 +9,7 @@ import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import { useContext, useState } from 'react';
 import AuthContext from '../../auth/AuthContext';
+import { useNavigate } from 'react-router-dom';
 
 // eslint-disable-next-line react/prop-types
 const AppHeader = ({ setToggleNav, toggleNav }) => {
@@ -17,6 +18,7 @@ const AppHeader = ({ setToggleNav, toggleNav }) => {
 
   const handleMenu = event => setAnchorEl(event.currentTarget);
   const handleClose = () => setAnchorEl(null);
+  const navigate = useNavigate();
 
   return (
     <AppBar sx={styles} position="sticky">
@@ -57,7 +59,14 @@ const AppHeader = ({ setToggleNav, toggleNav }) => {
             open={Boolean(anchorEl)}
             onClose={handleClose}
           >
-            <MenuItem onClick={handleClose}>Profile</MenuItem>
+            <MenuItem
+              onClick={() => {
+                navigate('/head-officer/profile/');
+                handleClose();
+              }}
+            >
+              Profile
+            </MenuItem>
             <MenuItem onClick={logoutUser}>Logout</MenuItem>
           </Menu>
         </Box>
@@ -71,6 +80,7 @@ const styles = {
   appBar: {
     bgcolor: 'primary.main',
   },
+  zIndex: '1',
 };
 
 export default AppHeader;
