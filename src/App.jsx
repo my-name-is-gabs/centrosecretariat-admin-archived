@@ -6,7 +6,7 @@ import PageNotFound from './PageNotFound';
 import OfficerPrivateRoute from './context/OfficerPrivateRoute';
 import HeadPrivateRoute from './context/HeadPrivateRoute';
 import HeadBase from './head/base/HeadBase';
-import HeadDashboard from './head/pages/HeadDashboard';
+import HeadDashboard from './Head/pages/HeadDashboard';
 import ManageScholarOfficer from './head/pages/accounts/ManageScholarOfficer';
 import ApplicantTable from './head/pages/tables/ApplicantTable';
 import AuditTable from './head/pages/tables/AuditTable';
