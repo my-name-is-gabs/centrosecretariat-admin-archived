@@ -1,4 +1,3 @@
-import { barangayOptions } from '../helper/selectionData';
 import { PropTypes } from 'prop-types';
 
 // eslint-disable-next-line react/prop-types
@@ -202,6 +201,37 @@ const ProfileModal = ({ defaultValue, setProfileDetail, handleUpdateInfo }) => {
     </div>
   );
 };
+
+const barangayOptions = [
+  'BAGUMBAYAN',
+  'BAMBANG',
+  'CALZADA',
+  'HAGONOY',
+  'IBAYO TIPAS',
+  'LIGID TIPAS',
+  'LOWER BICUTAN',
+  'NEW LOWER BICUTAN',
+  'NAPINDAN',
+  'PALINGON',
+  'SAN MIGUEL',
+  'SANTA ANA',
+  'TUKTUKAN',
+  'USUSAN',
+  'WAWA',
+  'BAGONG TANYAG',
+  'CENTRAL BICUTAN',
+  'CENTRAL SIGNAL VILLAGE',
+  'FORT BONIFACIO',
+  'KATUPARAN',
+  'MAHARLIKA VILLAGE',
+  'NORTH DAANG HARI',
+  'NORTH SIGNAL VILLAGE',
+  'PINAGSAMA',
+  'SOUTH DAANG HARI',
+  'SOUTH SIGNAL VILLAGE',
+  'UPPER BICUTAN',
+  'WESTERN BICUTAN',
+];
 
 ProfileModal.propTypes = {
   defaultValue: PropTypes.object,

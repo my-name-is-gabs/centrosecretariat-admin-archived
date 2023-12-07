@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
 import connectAPI from '../../connection/connectAPI';
 import { useState } from 'react';
-import { courseTakingOptions } from '../helper/selectionData';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
@@ -9,6 +8,20 @@ import { toast } from 'react-toastify';
 const Modal = ({ applicant_id, setLoading }) => {
   const [fetchListData, setListData] = useState({});
   const navigate = useNavigate();
+  const [courseName, setCourseName] = useState([]);
+
+  useEffect(() => {
+    (async function () {
+      try {
+        const res = await connectAPI.get('/applications/courses');
+        setCourseName(res.data);
+      } catch (error) {
+        console.error(
+          `Somthing went wrong in fetching university names: ${error.message}`
+        );
+      }
+    })();
+  }, []);
 
   useEffect(() => {
     const fetchingData = async () => {
@@ -336,7 +349,9 @@ const Modal = ({ applicant_id, setLoading }) => {
                           className="form-control"
                           readOnly
                           value={
-                            courseTakingOptions[fetchListData.course_taking]
+                            courseName.find(
+                              item => item.id === fetchListData.course_taking
+                            )?.course_name
                           }
                         />
                       </div>
