@@ -189,6 +189,10 @@ const GenerateReport = ({ open, setOpen, dashData }) => {
             </Typography>
           ))}
         </Box>
+
+        <Typography variant="subtitle2" textAlign="right">
+          ©️Copyright 2023 DevGroup12PUP
+        </Typography>
       </DialogContent>
       <DialogActions sx={{ padding: '1rem' }}>
         <Button
