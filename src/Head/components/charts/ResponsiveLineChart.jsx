@@ -4,7 +4,7 @@ import connectAPI from '../../../connection/connectAPI';
 import { useState } from 'react';
 
 // eslint-disable-next-line react/prop-types
-const ResponsiveLineChart = ({ filterSem }) => {
+const ResponsiveLineChart = ({ filterSem = 'FIRST SEMESTER' }) => {
   const [yearlyData, setYearlyData] = useState([]);
 
   useEffect(() => {
@@ -78,6 +78,7 @@ const ResponsiveLineChart = ({ filterSem }) => {
   return (
     <ResponsiveLine
       data={data}
+      colors={{ scheme: 'category10' }}
       margin={{ top: 50, right: 110, bottom: 50, left: 60 }}
       xScale={{ type: 'point' }}
       yScale={{
@@ -119,11 +120,11 @@ const ResponsiveLineChart = ({ filterSem }) => {
           translateX: 100,
           translateY: 0,
           itemsSpacing: 0,
-          itemDirection: 'left-to-right',
+          itemDirection: 'right-to-left',
           itemWidth: 80,
           itemHeight: 20,
-          itemOpacity: 0.75,
-          symbolSize: 12,
+          itemOpacity: 1,
+          symbolSize: 15,
           symbolShape: 'circle',
           symbolBorderColor: 'rgba(0, 0, 0, .5)',
           effects: [

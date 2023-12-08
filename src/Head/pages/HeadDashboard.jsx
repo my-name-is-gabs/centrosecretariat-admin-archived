@@ -1,14 +1,24 @@
 import { Box, Button, Typography, useTheme, Stack } from '@mui/material';
-import { indigo, blue } from '@mui/material/colors';
-import DownloadOutlinedIcon from '@mui/icons-material/DownloadOutlined';
+import grey from '@mui/material/colors/grey';
 import SchoolIcon from '@mui/icons-material/School';
 import PersonIcon from '@mui/icons-material/Person';
 import connectAPI from '../../connection/connectAPI';
-import { useEffect, useState } from 'react';
+import ResponsiveLineChart from '../components/charts/ResponsiveLineChart';
+import PieChartComponent from '../components/charts/PieChartComponent';
+import DoughnutComponent from '../components/charts/DoughnutComponent';
+import AssessmentIcon from '@mui/icons-material/Assessment';
+import WomanIcon from '@mui/icons-material/Woman';
+import BoyIcon from '@mui/icons-material/Boy';
+import { toast } from 'react-toastify';
+import { DataGrid } from '@mui/x-data-grid';
+import { useEffect, useMemo, useState } from 'react';
+import GenerateReport from '../dialogs/GenerateReport';
 
 const HeadDashboard = () => {
+  const [open, setOpen] = useState(false);
   const theme = useTheme();
   const [dashData, setDashData] = useState({});
+  const [rows, setRowData] = useState([]);
 
   useEffect(() => {
     connectAPI
@@ -17,8 +27,43 @@ const HeadDashboard = () => {
       .catch(() => console.error('error fetching dashboard data'));
   }, []);
 
+  useEffect(() => {
+    (async function () {
+      try {
+        const res = await connectAPI.get('/applications/logs/');
+        if (res.status === 200) {
+          setRowData(res.data);
+        }
+      } catch (error) {
+        toast.error('Error fetching data ' + error.message);
+      }
+    })();
+  }, []);
+
+  const columns = useMemo(
+    () => [
+      {
+        field: 'application_reference_id',
+        headerName: 'Application ID',
+        width: 200,
+      },
+      { field: 'officer_username', headerName: 'Officer Handler', width: 200 },
+      {
+        field: 'action_type',
+        headerName: 'Action',
+        width: 200,
+      },
+      {
+        field: 'timestamp',
+        headerName: 'Timestamp',
+        width: 300,
+      },
+    ],
+    []
+  );
+
   return (
-    <Box m="20px">
+    <Box m="25px">
       {/* HEADER */}
       <Box display="flex" justifyContent="space-between" alignItems="center">
         <Box mb="30px">
@@ -37,6 +82,8 @@ const HeadDashboard = () => {
 
         <Box>
           <Button
+            type="button"
+            onClick={() => setOpen(true)}
             sx={{
               backgroundColor: theme.palette.primary.main,
               color: 'white',
@@ -49,12 +96,12 @@ const HeadDashboard = () => {
               },
             }}
           >
-            <DownloadOutlinedIcon
+            <AssessmentIcon
               sx={{
                 mr: '10px',
               }}
             />
-            Download Reports
+            Generate Report
           </Button>
         </Box>
       </Box>
@@ -65,6 +112,8 @@ const HeadDashboard = () => {
         gridTemplateColumns="repeat(12, 1fr)"
         gridAutoRows="140px"
         gap="20px"
+        height="100%"
+        marginTop="25px"
       >
         {/* ROW 1 */}
         <Box
@@ -74,7 +123,7 @@ const HeadDashboard = () => {
           display="flex"
           justifyContent="space-between"
           alignItems="center"
-          sx={{ borderLeft: `10px solid ${indigo[500]}` }}
+          sx={{ borderLeft: `10px solid #ff5722` }}
         >
           <Stack spacing={1}>
             <Typography variant="subtitle2" sx={{ fontWeight: 'light' }}>
@@ -85,7 +134,7 @@ const HeadDashboard = () => {
             </Typography>
           </Stack>
 
-          <PersonIcon sx={{ fontSize: '5rem', color: indigo[500] }} />
+          <PersonIcon sx={{ fontSize: '5rem', color: '#ff5722' }} />
         </Box>
 
         <Box
@@ -95,7 +144,7 @@ const HeadDashboard = () => {
           display="flex"
           justifyContent="space-between"
           alignItems="center"
-          sx={{ borderLeft: `10px solid ${blue[500]}` }}
+          sx={{ borderLeft: `10px solid #52b202` }}
         >
           <Stack spacing={1}>
             <Typography variant="subtitle2" sx={{ fontWeight: 'light' }}>
@@ -106,105 +155,99 @@ const HeadDashboard = () => {
             </Typography>
           </Stack>
 
-          <SchoolIcon sx={{ fontSize: '5rem', color: blue[500] }} />
+          <SchoolIcon sx={{ fontSize: '5rem', color: '#52b202' }} />
+        </Box>
+
+        <Box
+          gridColumn="span 3"
+          backgroundColor="#f5f5f5"
+          padding="2rem"
+          display="flex"
+          justifyContent="space-between"
+          alignItems="center"
+          sx={{ borderLeft: `10px solid #2a3eb1` }}
+        >
+          <Stack spacing={1}>
+            <Typography variant="subtitle2" sx={{ fontWeight: 'light' }}>
+              Total Male Applicants
+            </Typography>
+            <Typography variant="h4" fontWeight="bold">
+              {dashData.male_applicants_count}
+            </Typography>
+          </Stack>
+
+          <BoyIcon sx={{ fontSize: '5rem', color: '#2a3eb1' }} />
+        </Box>
+
+        <Box
+          gridColumn="span 3"
+          backgroundColor="#f5f5f5"
+          padding="2rem"
+          display="flex"
+          justifyContent="space-between"
+          alignItems="center"
+          sx={{ borderLeft: `10px solid #ab003c` }}
+        >
+          <Stack spacing={1}>
+            <Typography variant="subtitle2" sx={{ fontWeight: 'light' }}>
+              Total Male Applicants
+            </Typography>
+            <Typography variant="h4" fontWeight="bold">
+              {dashData.female_applicants_count}
+            </Typography>
+          </Stack>
+
+          <WomanIcon sx={{ fontSize: '5rem', color: '#ab003c' }} />
         </Box>
 
         {/* ROW 2 */}
         <Box
           gridColumn="span 8"
-          gridRow="span 2"
-          // backgroundColor={colors.primary[400]}
+          gridRow="span 3"
+          marginTop="25px"
+          p="20px"
+          backgroundColor={grey[100]}
         >
-          <Box
-            mt="25px"
-            p="0 30px"
-            display="flex "
-            justifyContent="space-between"
-            alignItems="center"
-          >
-            <Box>
-              <Typography variant="h5" fontWeight="600">
-                Revenue Generated
-              </Typography>
-              <Typography
-                variant="h3"
-                fontWeight="bold"
-                // color={colors.greenAccent[500]}
-              >
-                $59,342.32
-              </Typography>
-            </Box>
-          </Box>
-          <Box height="250px" m="-20px 0 0 0">
-            {/* <LineChart isDashboard={true} /> */}
+          <Typography variant="h4" fontWeight="600">
+            Yearly Scholarship Count
+          </Typography>
+          <Box height="350px" m="-20px 0 0 0">
+            <ResponsiveLineChart />
           </Box>
         </Box>
         <Box
           gridColumn="span 4"
-          gridRow="span 2"
-          // backgroundColor={colors.primary[400]}
-          overflow="auto"
+          gridRow="span 3"
+          width="100%"
+          p="35px 12px"
+          backgroundColor={grey[100]}
         >
-          <Box
-            display="flex"
-            justifyContent="space-between"
-            alignItems="center"
-            // borderBottom={`4px solid ${colors.primary[500]}`}
-            // colors={colors.grey[100]}
-            p="15px"
-          >
-            <Typography variant="h5" fontWeight="600">
-              Recent Transactions
-            </Typography>
+          <Typography textAlign="center" variant="h5" fontWeight="600">
+            New and Renewal Applicant Count
+          </Typography>
+          <Box height="350px" m="-20px 0 0 0">
+            <PieChartComponent />
           </Box>
         </Box>
 
         {/* ROW 3 */}
         <Box
-          gridColumn="span 4"
-          gridRow="span 2"
-          // backgroundColor={colors.primary[400]}
-          p="30px"
+          gridColumn="span 6"
+          gridRow="span 3"
+          backgroundColor={grey[100]}
+          p="35px 12px"
         >
           <Typography variant="h5" fontWeight="600">
-            Campaign
+            Applicant Status
           </Typography>
-          <Box
-            display="flex"
-            flexDirection="column"
-            alignItems="center"
-            mt="25px"
-          >
-            {/* <ProgressCircle size="125" /> */}
-            <Typography
-              variant="h5"
-              // color={colors.greenAccent[500]}
-              sx={{ mt: '15px' }}
-            >
-              $48,352 revenue generated
-            </Typography>
-            <Typography>Includes extra misc expenditures and costs</Typography>
+          <Box height="350px" m="12px 0 0 0">
+            <DoughnutComponent />
           </Box>
         </Box>
+
         <Box
-          gridColumn="span 4"
-          gridRow="span 2"
-          // backgroundColor={colors.primary[400]}
-        >
-          <Typography
-            variant="h5"
-            fontWeight="600"
-            sx={{ padding: '30px 30px 0 30px' }}
-          >
-            Sales Quantity
-          </Typography>
-          <Box height="250px" mt="-20px">
-            {/* <BarChart isDashboard={true} /> */}
-          </Box>
-        </Box>
-        <Box
-          gridColumn="span 4"
-          gridRow="span 2"
+          gridColumn="span 6"
+          gridRow="span 3"
           // backgroundColor={colors.primary[400]}
           padding="30px"
         >
@@ -213,13 +256,20 @@ const HeadDashboard = () => {
             fontWeight="600"
             sx={{ marginBottom: '15px' }}
           >
-            Geography Based Traffic
+            Logs
           </Typography>
-          <Box height="200px">
-            {/* <GeographyChart isDashboard={true} /> */}
+          <Box height="350px">
+            <DataGrid
+              checkboxSelection
+              isCellEditable={false}
+              rows={rows.map((value, i) => ({ id: i, ...value }))}
+              columns={columns}
+            />
           </Box>
         </Box>
       </Box>
+
+      <GenerateReport open={open} setOpen={setOpen} dashData={dashData} />
     </Box>
   );
 };
