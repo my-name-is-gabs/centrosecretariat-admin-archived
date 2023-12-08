@@ -6,16 +6,15 @@ import PageNotFound from './PageNotFound';
 import OfficerPrivateRoute from './context/OfficerPrivateRoute';
 import HeadPrivateRoute from './context/HeadPrivateRoute';
 import HeadBase from './head/base/HeadBase';
-import HeadDashboard from './Head/pages/HeadDashboard';
+import HeadDashboard from './head/pages/HeadDashboard';
 import ManageScholarOfficer from './head/pages/accounts/ManageScholarOfficer';
 import ApplicantTable from './head/pages/tables/ApplicantTable';
 import AuditTable from './head/pages/tables/AuditTable';
 import ConfigScholar from './head/pages/ConfigScholar';
 import ForecastingChart from './head/pages/charts/ForecastingChart';
-import AreaBumpChart from './head/pages/charts/AreaBumpChart';
 import DoughnutChart from './head/pages/charts/DoughnutChart';
 import PieChart from './head/pages/charts/PieChart';
-import HeadHeatmap from './head/pages/charts/HeadHeatmap';
+import LineChart from './head/pages/charts/LineChart';
 import ScholarAccountList from './head/pages/accounts/ScholarAccountList';
 import OfficerBase from './officer/base/OfficerBase';
 import Home from './officer/Home/Home';
@@ -67,16 +66,13 @@ function App() {
               path="/head-officer/forecast-result/"
               element={<ForecastingChart />}
             />
-            <Route
-              path="/head-officer/area-bump/"
-              element={<AreaBumpChart />}
-            />
+
+            <Route path="/head-officer/line-chart/" element={<LineChart />} />
             <Route
               path="/head-officer/doughnut-chart/"
               element={<DoughnutChart />}
             />
             <Route path="/head-officer/pie-chart/" element={<PieChart />} />
-            <Route path="/head-officer/heatmap/" element={<HeadHeatmap />} />
             <Route path="/head-officer/profile/" element={<Profile />} />
           </Route>
         </Route>

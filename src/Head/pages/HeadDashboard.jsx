@@ -1,8 +1,22 @@
-import { Box, Button, Typography, useTheme } from '@mui/material';
+import { Box, Button, Typography, useTheme, Stack } from '@mui/material';
+import { indigo, blue } from '@mui/material/colors';
 import DownloadOutlinedIcon from '@mui/icons-material/DownloadOutlined';
+import SchoolIcon from '@mui/icons-material/School';
+import PersonIcon from '@mui/icons-material/Person';
+import connectAPI from '../../connection/connectAPI';
+import { useEffect, useState } from 'react';
 
 const HeadDashboard = () => {
   const theme = useTheme();
+  const [dashData, setDashData] = useState({});
+
+  useEffect(() => {
+    connectAPI
+      .get('/head/dashboard')
+      .then(res => setDashData(res.data))
+      .catch(() => console.error('error fetching dashboard data'));
+  }, []);
+
   return (
     <Box m="20px">
       {/* HEADER */}
@@ -56,42 +70,43 @@ const HeadDashboard = () => {
         <Box
           gridColumn="span 3"
           backgroundColor="#f5f5f5"
+          padding="2rem"
           display="flex"
+          justifyContent="space-between"
           alignItems="center"
-          justifyContent="center"
+          sx={{ borderLeft: `10px solid ${indigo[500]}` }}
         >
-          {/* <StatBox
-            title="12,361"
-            subtitle="Emails Sent"
-            progress="0.75"
-            increase="+14%"
-            icon={
-              <EmailIcon
-                sx={{ color: colors.greenAccent[600], fontSize: '26px' }}
-              />
-            }
-          /> */}
-          stat box 4
+          <Stack spacing={1}>
+            <Typography variant="subtitle2" sx={{ fontWeight: 'light' }}>
+              Total Applicant
+            </Typography>
+            <Typography variant="h4" fontWeight="bold">
+              {dashData.total_applicants_count}
+            </Typography>
+          </Stack>
+
+          <PersonIcon sx={{ fontSize: '5rem', color: indigo[500] }} />
         </Box>
+
         <Box
           gridColumn="span 3"
-          // backgroundColor={colors.primary[400]}
+          backgroundColor="#f5f5f5"
+          padding="2rem"
           display="flex"
+          justifyContent="space-between"
           alignItems="center"
-          justifyContent="center"
+          sx={{ borderLeft: `10px solid ${blue[500]}` }}
         >
-          {/* <StatBox
-            title="431,225"
-            subtitle="Sales Obtained"
-            progress="0.50"
-            increase="+21%"
-            icon={
-              <PointOfSaleIcon
-                sx={{ color: colors.greenAccent[600], fontSize: '26px' }}
-              />
-            }
-          /> */}
-          stat box 3
+          <Stack spacing={1}>
+            <Typography variant="subtitle2" sx={{ fontWeight: 'light' }}>
+              Graduating Scholars
+            </Typography>
+            <Typography variant="h4" fontWeight="bold">
+              {dashData.graduating_scholars_count}
+            </Typography>
+          </Stack>
+
+          <SchoolIcon sx={{ fontSize: '5rem', color: blue[500] }} />
         </Box>
 
         {/* ROW 2 */}

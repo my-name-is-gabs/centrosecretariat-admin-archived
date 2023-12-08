@@ -18,6 +18,7 @@ const Sidenav = ({ toggleNav }) => {
       style={{
         minHeight: '100vh',
         top: 'auto',
+        zIndex: 1,
       }}
       breakPoint="md"
       backgroundColor={theme.palette.neutral.dark}
@@ -77,7 +78,7 @@ const Sidenav = ({ toggleNav }) => {
           style={{ color: 'whitesmoke' }}
         >
           {' '}
-          Applicantion List{' '}
+          Application List{' '}
         </MenuItem>
         <MenuItem
           icon={<ChecklistIcon />}
@@ -108,13 +109,13 @@ const Sidenav = ({ toggleNav }) => {
             component={<Link to="/head-officer/forecast-result/" />}
           >
             {' '}
-            Forecasting Result
+            Forecast Trend
           </MenuItem>
           <MenuItem
             active={location.pathname === '/head-officer/area-bump/'}
-            component={<Link to="/head-officer/area-bump/" />}
+            component={<Link to="/head-officer/line-chart/" />}
           >
-            Bar Chart
+            Line Chart
           </MenuItem>
           <MenuItem
             active={location.pathname === '/head-officer/doughnut-chart/'}
@@ -129,13 +130,6 @@ const Sidenav = ({ toggleNav }) => {
           >
             {' '}
             Pie Chart{' '}
-          </MenuItem>
-          <MenuItem
-            active={location.pathname === '/head-officer/heatmap/'}
-            component={<Link to="/head-officer/heatmap/" />}
-          >
-            {' '}
-            Heatmap{' '}
           </MenuItem>
         </SubMenu>
       </Menu>

@@ -80,7 +80,7 @@ const styles = {
   appBar: {
     bgcolor: 'primary.main',
   },
-  zIndex: '1',
+  zIndex: '5',
 };
 
 export default AppHeader;
