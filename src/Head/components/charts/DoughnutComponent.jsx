@@ -24,20 +24,19 @@ const DoughnutComponent = () => {
   const data = useMemo(
     () => [
       {
-        id: 'Rejected',
-        lable: 'Rejected',
-        value: rejected,
+        id: 'Accepted',
+        label: 'Accepted',
+        value: accepted,
       },
       {
         id: 'Pending',
         lable: 'Pending',
         value: pending,
       },
-
       {
-        id: 'Accepted',
-        label: 'Accepted',
-        value: accepted,
+        id: 'Rejected',
+        lable: 'Rejected',
+        value: rejected,
       },
     ],
     [accepted, pending, rejected]
@@ -51,7 +50,7 @@ const DoughnutComponent = () => {
       innerRadius={0.5}
       cornerRadius={3}
       activeOuterRadiusOffset={8}
-      colors={{ scheme: 'category10' }}
+      colors={{ scheme: 'accent' }}
       borderWidth={1}
       borderColor={{
         from: 'color',

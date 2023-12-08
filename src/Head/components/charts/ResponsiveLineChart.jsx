@@ -1,5 +1,5 @@
 import { ResponsiveLine } from '@nivo/line';
-import { useEffect } from 'react';
+import { useEffect, useMemo } from 'react';
 import connectAPI from '../../../connection/connectAPI';
 import { useState } from 'react';
 
@@ -20,58 +20,64 @@ const ResponsiveLineChart = ({ filterSem }) => {
         .catch(err => console.error(err));
     })();
   }, [filterSem]);
+
+  const data = useMemo(
+    () => [
+      {
+        id: 'BASIC PLUS SUC',
+        color: 'hsl(312, 70%, 50%)',
+        data: yearlyData.map(value => ({
+          x: value.year,
+          y: value.total_basic_plus,
+        })),
+      },
+      {
+        id: 'SUC/LCU',
+        color: 'hsl(241, 70%, 50%)',
+        data: yearlyData.map(value => ({
+          x: value.year,
+          y: value.total_suc_lcu,
+        })),
+      },
+      {
+        id: 'BASIC SCHOLARSHIP',
+        color: 'hsl(79, 70%, 50%)',
+        data: yearlyData.map(value => ({
+          x: value.year,
+          y: value.total_basic_scholarship,
+        })),
+      },
+      {
+        id: 'HONORS',
+        color: 'hsl(37, 70%, 50%)',
+        data: yearlyData.map(value => ({
+          x: value.year,
+          y: value.total_honors,
+        })),
+      },
+      {
+        id: 'PRIORITY',
+        color: 'hsl(343, 70%, 50%)',
+        data: yearlyData.map(value => ({
+          x: value.year,
+          y: value.total_priority,
+        })),
+      },
+      {
+        id: 'PREMIER',
+        color: 'hsl(543, 90%, 50%)',
+        data: yearlyData.map(value => ({
+          x: value.year,
+          y: value.total_premier,
+        })),
+      },
+    ],
+    [yearlyData]
+  );
+
   return (
     <ResponsiveLine
-      data={[
-        {
-          id: 'BASIC PLUS SUC',
-          color: 'hsl(312, 70%, 50%)',
-          data: yearlyData.map(value => ({
-            x: value.year,
-            y: value.total_basic_plus,
-          })),
-        },
-        {
-          id: 'SUC/LCU',
-          color: 'hsl(241, 70%, 50%)',
-          data: yearlyData.map(value => ({
-            x: value.year,
-            y: value.total_suc_lcu,
-          })),
-        },
-        {
-          id: 'BASIC SCHOLARSHIP',
-          color: 'hsl(79, 70%, 50%)',
-          data: yearlyData.map(value => ({
-            x: value.year,
-            y: value.total_basic_scholarship,
-          })),
-        },
-        {
-          id: 'HONORS',
-          color: 'hsl(37, 70%, 50%)',
-          data: yearlyData.map(value => ({
-            x: value.year,
-            y: value.total_honors,
-          })),
-        },
-        {
-          id: 'PRIORITY',
-          color: 'hsl(343, 70%, 50%)',
-          data: yearlyData.map(value => ({
-            x: value.year,
-            y: value.total_priority,
-          })),
-        },
-        {
-          id: 'PREMIER',
-          color: 'hsl(543, 90%, 50%)',
-          data: yearlyData.map(value => ({
-            x: value.year,
-            y: value.total_premier,
-          })),
-        },
-      ]}
+      data={data}
       margin={{ top: 50, right: 110, bottom: 50, left: 60 }}
       xScale={{ type: 'point' }}
       yScale={{

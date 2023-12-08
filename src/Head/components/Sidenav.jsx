@@ -112,7 +112,7 @@ const Sidenav = ({ toggleNav }) => {
             Forecast Trend
           </MenuItem>
           <MenuItem
-            active={location.pathname === '/head-officer/area-bump/'}
+            active={location.pathname === '/head-officer/line-chart/'}
             component={<Link to="/head-officer/line-chart/" />}
           >
             Line Chart

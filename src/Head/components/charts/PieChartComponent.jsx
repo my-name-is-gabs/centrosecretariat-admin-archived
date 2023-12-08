@@ -1,7 +1,40 @@
-/* eslint-disable react/prop-types */
 import { ResponsivePie } from '@nivo/pie';
+import connectAPI from '../../../connection/connectAPI';
+import { useEffect, useMemo } from 'react';
+import { useState } from 'react';
 
-const ResponsivePieChart = ({ data }) => {
+const PieChartComponent = () => {
+  const [newApplicantData, setNewApplicant] = useState(null);
+  const [renewalApplicantData, setRenewalApplicant] = useState(null);
+
+  useEffect(() => {
+    (function () {
+      connectAPI
+        .get('/head/data/applicant-status/')
+        .then(res => {
+          setNewApplicant(() => res.data.new_applicants_count);
+          setRenewalApplicant(() => res.data.renewing_applicants_count);
+        })
+        .catch(err => console.error(err));
+    })();
+  }, []);
+
+  const data = useMemo(
+    () => [
+      {
+        id: 'New Applicants',
+        label: 'New Applicants',
+        value: newApplicantData,
+      },
+      {
+        id: 'Renewal Applicants',
+        lable: 'Renewal Applicants',
+        value: renewalApplicantData,
+      },
+    ],
+    [newApplicantData, renewalApplicantData]
+  );
+
   return (
     <ResponsivePie
       data={data}
@@ -74,4 +107,4 @@ const ResponsivePieChart = ({ data }) => {
   );
 };
 
-export default ResponsivePieChart;
+export default PieChartComponent;
